@@ -15,13 +15,21 @@ import { useState } from "react";
 
 
 function App() {
+  const [pizzas, setPizzas] = useState([]);
   const [total, setTotal] = useState(0);
   const [listaPizzas, setListaPizzas] = useState([]);
 
   return (
     <>
       <CardContext.Provider
-        value={{ total, setTotal, listaPizzas, setListaPizzas }}
+        value={{
+          pizzas,
+          setPizzas,
+          total,
+          setTotal,
+          listaPizzas,
+          setListaPizzas
+        }}
       >
         <Navbar></Navbar>
         <Header></Header>

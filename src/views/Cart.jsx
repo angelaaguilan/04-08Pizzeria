@@ -21,10 +21,10 @@ export const Cart = () => {
   const { listaPizzas, setListaPizzas } = useContext(CardContext);
   // el Total de la lista de pizzas a pagar (CONTEXT)
   const { total, setTotal } = useContext(CardContext);
+  // Datos de todas las pizza para genera las card de c/u (CONTEXT)
+  const { pizzas, setPizzas } = useContext(CardContext);
 
-  // Datos de cada pizza para genera las card de c/u
-  const [pizzas, setPizzas] = useState([]);
-
+  
   // Conectar y consumir la API
   const url = "http://localhost:5000/api/pizzas/";
 

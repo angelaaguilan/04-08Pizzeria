@@ -1,13 +1,14 @@
 import CardPizza from '../component/CardPizza.jsx'
 import Row from "react-bootstrap/Row";
 import { Container } from 'react-bootstrap';
-import { useEffect } from "react";
-import { useState } from "react";
+import { useContext, useEffect } from "react";
+//import { useState } from "react";
+import CardContext from '../context/CardContext.jsx';
 
 
-const Home = () => {  
-  // Estados
-  const [pizzas, setPizzas] = useState([]);
+const Home = () => {
+  // Datos de todas las pizza para genera las card de c/u (CONTEXT)
+  const { pizzas, setPizzas } = useContext(CardContext);
 
   // Conectar y consumir la API
   const url = "http://localhost:5000/api/pizzas/";

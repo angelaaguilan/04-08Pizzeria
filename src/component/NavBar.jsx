@@ -16,6 +16,7 @@ import { useContext } from 'react';
 
 const NavBar = () => {
   const token = true;
+
   // total obtenido desde el Contexto
   const { total } = useContext(CardContext);
 
