@@ -1,8 +1,7 @@
 # React + Vite
 
-DESAFÍO REACT - INTRODUCCIÓN
+DESAFÍO REACT
 
-Pizzeria v5 - Router
+Pizzeria v6 - Context
 
-REPOSITORIO: https://github.com/angelaaguilan/04-07Pizzeria
-DEPLOY: https://angelaaguilan.github.io/04-07Pizzeria/git
+REPOSITORIO: https://github.com/angelaaguilan/04-08Pizzeria

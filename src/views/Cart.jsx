@@ -1,5 +1,5 @@
 // Carrito de compras
-import { useState } from 'react';
+import { useContext, useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
@@ -8,7 +8,7 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import carroCompra from "../assets/imgs/carroCompra.png";
 import ListGroup from "react-bootstrap/ListGroup";
-import { useEffect } from "react";
+import CardContext from '../context/CardContext';
 
 export const Cart = () => {
 
@@ -20,8 +20,11 @@ export const Cart = () => {
 
   //  genera la lista de pizzas en el carrito
   const [listaPizzas, setListaPizzas] = useState([]);
-  // es Total de la lista de pizzas a pagar
-  const [total, setTotal] = useState(0);
+
+  // el Total de la lista de pizzas a pagar (CONTEXTO)
+  const { total, setTotal } = useContext(CardContext);
+  
+  // Datos de cada pizza para genera las card de c/u
   const [pizzas, setPizzas] = useState([]);
 
     // Conectar y consumir la API

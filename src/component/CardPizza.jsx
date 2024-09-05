@@ -47,12 +47,13 @@ export const CardPizza = ({ pizza }) => {
             <Image src={eyes} />
           </Button>
 
-          <Button variant="dark" className="mx-3" type="submit">
+          <Button variant="dark" className="mx-3" type="submit" >
             <Link to="/cart" className="text-white ms-3 text-decoration-none">
               Añadir
             </Link>{" "}
             <Image src={carroCompra} />
           </Button>
+          
         </Card.Footer>
       </Card>
     </>
