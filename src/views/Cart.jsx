@@ -11,34 +11,32 @@ import ListGroup from "react-bootstrap/ListGroup";
 import CardContext from '../context/CardContext';
 
 export const Cart = () => {
-
   const styleCard = {
     width: "30%",
     height: "auto",
     margin: "10px 10px 8px 20px",
   };
 
-  //  genera la lista de pizzas en el carrito
-  const [listaPizzas, setListaPizzas] = useState([]);
-
-  // el Total de la lista de pizzas a pagar (CONTEXTO)
+  //  genera la lista de pizzas en el carrito (CONTEXT)
+  const { listaPizzas, setListaPizzas } = useContext(CardContext);
+  // el Total de la lista de pizzas a pagar (CONTEXT)
   const { total, setTotal } = useContext(CardContext);
-  
+
   // Datos de cada pizza para genera las card de c/u
   const [pizzas, setPizzas] = useState([]);
 
-    // Conectar y consumir la API
-    const url = "http://localhost:5000/api/pizzas/";
+  // Conectar y consumir la API
+  const url = "http://localhost:5000/api/pizzas/";
 
-    const getData = async () => {
-      const response = await fetch(url);
-      const data = await response.json();
-      setPizzas(data);
-    };
-  
-    useEffect(() => {
-      getData();
-    }, []);
+  const getData = async () => {
+    const response = await fetch(url);
+    const data = await response.json();
+    setPizzas(data);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   // Agrega, suma o resta las pizzas a la lista
   const agregaPizza = (pizza, operacion) => {
@@ -103,7 +101,6 @@ export const Cart = () => {
       }
     }
   };
-  
 
   return (
     <>
@@ -143,7 +140,7 @@ export const Cart = () => {
                             Precio: $
                             {Intl.NumberFormat("de-DE").format(pizza.price)}
                           </div>
-                          <Button 
+                          <Button
                             variant="dark"
                             style={{ width: "10%" }}
                             onClick={() => agregaPizza(pizza, "restar")}
@@ -194,11 +191,9 @@ export const Cart = () => {
                     <Card.Text className="h4 mb-4">
                       Precio: ${Intl.NumberFormat("de-DE").format(pizza.price)}
                     </Card.Text>
-                    <Card.Text className="h4 mb-4">
-                      Ingredientes:
-                    </Card.Text>
+                    <Card.Text className="h4 mb-4">Ingredientes:</Card.Text>
                     <Card.Text className="h5 mb-4">
-                      {[pizza.ingredients].join(', ')}
+                      {[pizza.ingredients].join(", ")}
                     </Card.Text>
                     <Button
                       variant="dark"

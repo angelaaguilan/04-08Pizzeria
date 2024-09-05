@@ -5,12 +5,44 @@ import PizzaTrozo from '../assets/imgs/PizzaTrozo.png';
 import carroCompra from '../assets/imgs/carroCompra.png';
 import eyes from '../assets/imgs/eyes.png';
 import { Link } from "react-router-dom";
+import { useContext } from 'react';
+import CardContext from "../context/CardContext";
 
 
 export const CardPizza = ({ pizza }) => {
-  const styleCard = { width: "30%", height: "auto", margin: "20px 3px 10px 3px", padding: "5px"};
+  const styleCard = {
+    width: "30%",
+    height: "auto",
+    margin: "20px 3px 10px 3px",
+    padding: "5px",
+  };
+
   const precio = Intl.NumberFormat("de-DE").format(pizza.price);
-  const toPizza = "/Pizza/" + pizza.id.toUpperCase();
+
+  //  genera la lista de pizzas en el carrito (CONTEXT)
+  const { listaPizzas, setListaPizzas } = useContext(CardContext);
+  // el Total de la lista de pizzas a pagar (CONTEXT)
+  const { total, setTotal } = useContext(CardContext);
+
+  // Agrega y suma las pizzas a la lista
+  const agregaPizza = (pizza) => {
+    const found = listaPizzas.findIndex((Lista) => Lista.id === pizza.id);
+    if (found < 0) {
+      // primera carga de cada pizza seleccionada a la lista y total
+      setTotal(total + pizza.price);
+      setListaPizzas([
+        ...listaPizzas,
+        {
+          id: pizza.id,
+          name: pizza.name,
+          price: pizza.price,
+          cantidad: 1,
+        },
+      ]);
+    } else {
+      alert("La pizza ya se encuentra en el carrito de compras");
+    }
+  };
 
   return (
     <>
@@ -47,13 +79,17 @@ export const CardPizza = ({ pizza }) => {
             <Image src={eyes} />
           </Button>
 
-          <Button variant="dark" className="mx-3" type="submit" >
+          <Button
+            variant="dark"
+            className="mx-3"
+            type="submit"
+            onClick={() => agregaPizza(pizza)}
+          >
             <Link to="/cart" className="text-white ms-3 text-decoration-none">
               Añadir
             </Link>{" "}
             <Image src={carroCompra} />
           </Button>
-          
         </Card.Footer>
       </Card>
     </>

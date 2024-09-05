@@ -16,7 +16,8 @@ import { useState } from "react";
 
 function App() {
   const [total, setTotal] = useState(0);
-  
+  const [listaPizzas, setListaPizzas] = useState([]);
+
   return (
     <>
       <CardContext.Provider
